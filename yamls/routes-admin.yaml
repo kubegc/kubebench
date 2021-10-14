@@ -1,0 +1,76 @@
+apiVersion: doslab.io/v1
+kind: Frontend
+metadata:
+  name: routes-1001-admin
+  namespace: default
+spec:
+  catalogs:
+  - name: 测试管理
+    path: /testMgr
+  - name: 系统管理
+    path: /resMgr
+  groups:
+  - icon: routes
+    name: 基准管理
+    path: /testMgr/benchmark
+  - icon: routes
+    name: 过程管理
+    path: /testMgr/process
+  - icon: routes
+    name: 环境信息
+    path: /resMgr/env
+  - icon: routes
+    name: 用户管理
+    path: /resMgr/rbac
+  items:
+  - component: /table/index
+    icon: resources
+    kind: doslab.io.TestCase
+    name: 测试用例
+    path: /testMgr/benchmark/testcase
+  - component: /table/index
+    icon: resources
+    kind: doslab.io.Workload
+    name: 测试负载
+    path: /testMgr/benchmark/workload
+  - component: /table/index
+    icon: resources
+    kind: doslab.io.Plan
+    name: 测试计划
+    path: /testMgr/process/plan
+  - component: /table/index
+    icon: resources
+    kind: doslab.io.Bug
+    name: 测试缺陷
+    path: /testMgr/process/bug
+  - component: /table/index
+    icon: resources
+    kind: Node
+    name: 资源列表
+    path: /resMgr/env/resource
+  - component: /table/index
+    icon: resources
+    kind: Pod
+    name: 实例列表
+    path: /resMgr/env/instance
+  - component: /dashboard/index
+    icon: resources
+    name: 资源统计
+    path: /resMgr/env/usage
+    source: http://39.100.91.95:31002/d/uDJq1gInk/1-node-exporter-for-prometheus-dashboard-en-v20201010?orgId=1&kiosk=tv
+  - component: /dashboard/index
+    icon: resources
+    name: 系统日志
+    path: /resMgr/env/log
+    source: http://39.100.91.95:31002/d/ffxEJdvGz/loki-logs?orgId=1&refresh=1m&kiosk
+  - component: /table/index
+    icon: resources
+    kind: doslab.io.User
+    name: 用户列表
+    path: /resMgr/rbac/user
+  - component: /table/index
+    icon: resources
+    kind: doslab.io.UserRole
+    name: 角色列表
+    path: /resMgr/rbac/role
+  type: route

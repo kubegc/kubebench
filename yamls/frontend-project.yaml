@@ -1,0 +1,10 @@
+apiVersion: doslab.io/v1
+kind: Frontend
+metadata:
+  name: frontend-project
+  namespace: default
+spec:
+  data:
+  - label: 云平台测试工具
+    value: "1001"
+  type: project
