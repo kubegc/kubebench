@@ -25,7 +25,7 @@ spec:
   items:
   - component: /table/index
     icon: resources
-    kind: doslab.io.TestCase
+    kind: doslab.io.Testcase
     name: 测试用例
     path: /testMgr/benchmark/testcase
   - component: /table/index
