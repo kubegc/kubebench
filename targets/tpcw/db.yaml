@@ -33,11 +33,6 @@ spec:
         volumeMounts:
         - name: "data"
           mountPath: "/var/lib/mysql"
-      - name: "adminer"
-        image: "adminer:4.7.8-standalone"
-        imagePullPolicy: "IfNotPresent"
-        ports: 
-        - containerPort: 8080
       volumes: 
       - name: "data"
         hostPath:
