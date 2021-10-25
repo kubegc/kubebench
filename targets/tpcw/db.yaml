@@ -1,0 +1,44 @@
+--- 
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata: 
+  name: "tpcw-database"
+  namespace: "kube-bench"
+  labels: 
+    name: "tpcw-database"
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels:
+      name: "tpcw-database"
+  template: 
+    metadata: 
+      labels: 
+        name: "tpcw-database"
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/master: ""
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
+      containers:
+      - name: "mariadb"
+        image: "mariadb:10.6.4"
+        imagePullPolicy: "IfNotPresent"
+        ports:
+        - containerPort: 3306
+        env:
+        - name: "MYSQL_ROOT_PASSWORD"
+          value: "onceas"
+        volumeMounts:
+        - name: "data"
+          mountPath: "/var/lib/mysql"
+      - name: "adminer"
+        image: "adminer:4.7.8-standalone"
+        imagePullPolicy: "IfNotPresent"
+        ports: 
+        - containerPort: 8080
+      volumes: 
+      - name: "data"
+        hostPath:
+          path: "/var/lib/doslab/tpcw"
