@@ -1,0 +1,24 @@
+--- 
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata: 
+  name: "tpcw-web"
+  namespace: "kube-bench"
+  labels: 
+    name: "tpcw-web"
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels:
+      name: "tpcw-web"
+  template: 
+    metadata: 
+      labels: 
+        name: "tpcw-web"
+    spec:
+      containers:
+      - name: "tpcw-web"
+        image: "registry.cn-beijing.aliyuncs.com/dosproj/tpcw-web:final-amd64"
+        imagePullPolicy: "IfNotPresent"
+        ports:
+        - containerPort: 8080
