@@ -1,0 +1,25 @@
+---
+apiVersion: "batch/v1"
+kind: "Job"
+metadata:
+  name: "tpcw-dbgen"
+  namespace: "kube-bench"
+  labels:
+    name: "tpcw-dbgen"
+spec:
+  template:
+    metadata:
+      labels:
+        name: "tpcw-dbgen"
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: "tpcw-dbgen"
+        image: "registry.cn-beijing.aliyuncs.com/dosproj/tpcw-db-gen:final-amd64"
+        imagePullPolicy: "IfNotPresent"
+        command:
+        - "java"
+        - "-jar"
+        - "dbGen.jar"
+        - "10"
+        - "10"

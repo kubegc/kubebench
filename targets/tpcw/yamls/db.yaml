@@ -16,11 +16,6 @@ spec:
       labels: 
         name: "tpcw-database"
     spec:
-      nodeSelector:
-        node-role.kubernetes.io/master: ""
-      tolerations:
-        - key: node-role.kubernetes.io/master
-          effect: NoSchedule
       containers:
       - name: "mariadb"
         image: "mariadb:10.6.4"
@@ -33,7 +28,24 @@ spec:
         volumeMounts:
         - name: "data"
           mountPath: "/var/lib/mysql"
-      volumes: 
+      volumes:
       - name: "data"
         hostPath:
           path: "/var/lib/doslab/tpcw"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tpcw-database
+  namespace: kube-bench
+  labels: 
+    name: kube-tpcw
+spec:
+  type: NodePort
+  ports:
+  - port: 3306
+    protocol: TCP
+    targetPort: 3306
+    name: mariadb-port
+  selector:
+    name: tpcw-database
