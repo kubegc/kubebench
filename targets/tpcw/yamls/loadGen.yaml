@@ -1,0 +1,34 @@
+---
+apiVersion: "batch/v1"
+kind: "Job"
+metadata:
+  name: "tpcw-loadgen"
+  namespace: "kube-bench"
+  labels:
+    name: "tpcw-loadgen"
+spec:
+  template:
+    metadata:
+      labels:
+        name: "tpcw-loadgen"
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: "tpcw-loadgen"
+        image: "registry.cn-beijing.aliyuncs.com/dosproj/tpcw-load-gen:final-amd64"
+        imagePullPolicy: "IfNotPresent"
+        command:
+        - "bash"
+        - "loadGen.sh"
+        - "-w"
+        - "http://tpcw-database.kube-bench:8080/tpcw/"
+        - "-b"
+        - "1000"
+        volumeMounts:
+        - name: "data"
+          mountPath: "/var/"
+      volumes: 
+      - name: "data"
+        hostPath:
+          path: "/var/lib/doslab/tpcw-test"
+
