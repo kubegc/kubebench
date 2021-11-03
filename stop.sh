@@ -1,0 +1,1 @@
+kubectl delete -f ./targets/tpcw/yamls/loadGen.yaml

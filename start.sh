@@ -1,0 +1,1 @@
+kubectl apply -f ./targets/tpcw/yamls/loadGen.yaml
