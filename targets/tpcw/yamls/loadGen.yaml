@@ -21,7 +21,7 @@ spec:
         - "bash"
         - "loadGen.sh"
         - "-w"
-        - "http://tpcw-database.kube-bench:8080/tpcw/"
+        - "http://tpcw-web-service.kube-bench:8080/tpcw/"
         - "-b"
         - "1000"
         volumeMounts:
