@@ -22,4 +22,12 @@ AvgHeapMemoryUsage=0.27782744616270066
 AvgNonHeapMemoryUsage=-1.4520081032533333E9
 AvgCPUUsage=1.799013881354363
 
+## script location
+
+```
+/root/kube-bench/install.sh
+/root/kube-bench/start.sh
+/root/kube-bench/stop.sh
+```
+
 
